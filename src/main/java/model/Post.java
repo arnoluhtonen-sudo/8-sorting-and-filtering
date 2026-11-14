@@ -30,6 +30,11 @@ public record Post(
         /** Optional time of deletion in ISO format */
         String deletedAt) {
 
+    public Object contains(User user) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'contains'");
+    }
+
     /*
      * You do not need to modify this class in the exercise. If you want, you can
      * add your own methods here.

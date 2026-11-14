@@ -1,6 +1,9 @@
 package exercise;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.lang.model.element.Element;
 
 import model.Post;
 import model.User;
@@ -17,17 +20,57 @@ public class Sorting {
      * @return a new list of posts sorted by their published date in ascending order
      */
     public static List<Post> sortPostsByPublishedDate(List<Post> posts) {
-        /*
-         * The purpose of this exercise is to implement the sorting logic yourself.
-         * Therefore, you are not allowed to use existing implementations of sorting
-         * algorithms.
-         *
-         * Note that the `publishedAt` values can be compared by using the
-         * alphabetical ordering of the string values. You can also convert the string
-         * values to other data types, for example, to objects in the java.time package.
-         */
-        return posts; // TODO: return a new list with the posts sorted
+        List<Post> sorted = new ArrayList<>(posts);
+        bubbleSortList(sorted);
+        return sorted;
     }
+
+    // https://stackabuse.com/bubble-sort-in-java/
+
+    // public void bubbleSortArrayList(List<Element> list) {
+    // Element temp;
+    // boolean sorted = false;
+
+    // while (!sorted) {
+    // sorted = true;
+    // for (int i = 0; i < list.size()-1; i++) {
+    // if (list.get(i).compareTo(list.get(i + 1)) > 0) {
+    // temp = list.get(i);
+    // list.set(i, list.get(i + 1));
+    // list.set(i + 1, temp);
+    // sorted = false;
+    // }}}}
+
+    // //Sort the list
+    // bubbleSort.bubbleSortArrayList(list);
+    
+    public static void bubbleSortList(List<Post> list) {
+        Post temp;
+        boolean swapDone = true;
+
+        while (swapDone) {
+            swapDone = false;
+            for (int i = 0; i < list.size() - 1; i++) {
+                if (list.get(i).publishedAt().compareTo(list.get(i + 1).publishedAt()) > 0) {
+
+                    temp = list.get(i);
+                    list.set(i, list.get(i + 1));
+                    list.set(i + 1, temp);
+                    swapDone = true;
+
+                }
+            }
+        }
+    }
+    /*
+     * The purpose of this exercise is to implement the sorting logic yourself.
+     * Therefore, you are not allowed to use existing implementations of sorting
+     * algorithms.
+     *
+     * Note that the `publishedAt` values can be compared by using the
+     * alphabetical ordering of the string values. You can also convert the string
+     * values to other data types, for example, to objects in the java.time package.
+     */
 
     /**
      * Returns a new list with the given users sorted by their registration date in
